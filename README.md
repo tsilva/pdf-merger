@@ -1,12 +1,21 @@
-# pdf-merger
+# 📄 PDF Merger
 
 <p align="center">
   <img src="logo.jpg" alt="PDF Merger Logo" width="400"/>
 </p>
 
-A Python command-line tool to batch merge related PDF files in a directory.
+> 🚀 Effortlessly merge related PDF files with smart auto-detection and batch processing
 
-## Installation
+## ✨ Features
+
+- 🤖 Smart detection of related PDF files by name patterns
+- 🔄 Interactive merge confirmation system
+- 📊 Real-time progress tracking
+- 📝 Detailed logging
+- 🛡️ Safe file handling with collision detection
+- ⚡ Fast and efficient processing
+
+## 🛠️ Installation
 
 1. Clone this repository:
 ```bash
@@ -20,36 +29,36 @@ conda env create -f environment.yml
 conda activate pdf-merger
 ```
 
-## Usage
+## 🚀 Usage
 
-Run the script with a directory containing PDF files:
+Simply point the script to your PDF directory:
 
 ```bash
 python main.py /path/to/pdf/directory
 ```
 
-The script will:
-1. Scan the directory for PDF files
-2. Group files with similar names (e.g., "report-1.pdf", "report-2.pdf")
-3. Prompt for confirmation before merging each group
-4. Create merged files with ".merged.pdf" suffix
+### What it does:
+1. 🔍 Scans directory for PDF files
+2. 🤝 Groups related files (e.g., "report-1.pdf", "report-2.pdf")
+3. ❓ Asks for your confirmation
+4. ✨ Creates clean merged files with ".merged.pdf" suffix
 
-## Example
+## 📚 Example
 
-If your directory contains:
+Given a directory with:
 ```
-document-1.pdf
-document-2.pdf
-document-3.pdf
-other.pdf
+📄 document-1.pdf
+📄 document-2.pdf
+📄 document-3.pdf
+📄 other.pdf
 ```
 
-The script will:
-1. Identify "document-1.pdf", "document-2.pdf", and "document-3.pdf" as related
-2. Prompt you to merge them
-3. If confirmed, create "document.merged.pdf"
-4. Skip "other.pdf" as it has no related files
+The magic happens:
+1. 🔍 Finds the related "document" files
+2. 💬 Asks if you want to merge them
+3. ✨ Creates "document.merged.pdf"
+4. ⏩ Skips unrelated files automatically
 
-## License
+## 📝 License
 
-This project was developed in collaboration with the `claude-3.5-sonnet` and is made available under the [MIT License](LICENSE).
+This project was developed in collaboration with `claude-3.5-sonnet` and is available under the [MIT License](LICENSE) 📜
