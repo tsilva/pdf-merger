@@ -4,16 +4,15 @@
   <img src="logo.jpg" alt="PDF Merger Logo" width="400"/>
 </p>
 
-> 🚀 Effortlessly merge related PDF files with smart auto-detection and batch processing
+> 🔍 Simple tool to find and merge related PDF files in a directory
 
 ## ✨ Features
 
-- 🤖 Smart detection of related PDF files by name patterns
-- 🔄 Interactive merge confirmation system
-- 📊 Real-time progress tracking
-- 📝 Detailed logging
-- 🛡️ Safe file handling with collision detection
-- ⚡ Fast and efficient processing
+- 📁 Finds PDF files with similar names
+- 💬 Asks before merging files
+- 📊 Shows merge progress
+- 📝 Keeps you informed with logs
+- 🛡️ Checks for existing files
 
 ## 🛠️ Installation
 
@@ -31,21 +30,21 @@ conda activate pdf-merger
 
 ## 🚀 Usage
 
-Simply point the script to your PDF directory:
+Run with your PDF directory:
 
 ```bash
 python main.py /path/to/pdf/directory
 ```
 
-### What it does:
-1. 🔍 Scans directory for PDF files
-2. 🤝 Groups related files (e.g., "report-1.pdf", "report-2.pdf")
-3. ❓ Asks for your confirmation
-4. ✨ Creates clean merged files with ".merged.pdf" suffix
+### How it works:
+1. 🔍 Looks for PDF files in your directory
+2. 📋 Groups files with similar names
+3. ❓ Checks with you before merging
+4. 📄 Creates the merged PDF
 
 ## 📚 Example
 
-Given a directory with:
+Your files:
 ```
 📄 document-1.pdf
 📄 document-2.pdf
@@ -53,12 +52,13 @@ Given a directory with:
 📄 other.pdf
 ```
 
-The magic happens:
-1. 🔍 Finds the related "document" files
-2. 💬 Asks if you want to merge them
-3. ✨ Creates "document.merged.pdf"
-4. ⏩ Skips unrelated files automatically
+What happens:
+1. 🔍 Spots the related "document" files
+2. 💬 Asks if you want them merged
+3. 📄 Creates "document.merged.pdf"
+4. ➡️ Leaves other files alone
 
 ## 📝 License
 
-This project was developed in collaboration with `claude-3.5-sonnet` and is available under the [MIT License](LICENSE) 📜
+This project is available under the [MIT License](LICENSE) 📜
+
