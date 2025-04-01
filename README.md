@@ -16,24 +16,14 @@
 
 ## 🛠️ Installation
 
-1. Clone this repository:
 ```bash
 git clone https://github.com/tsilva/pdf-merger.git
 cd pdf-merger
+curl -L https://gist.githubusercontent.com/tsilva/258374c1ba2296d8ba22fffbf640f183/raw/venv-install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
 
-2. Create conda environment:
 ```bash
-conda env create -f environment.yml
-conda activate pdf-merger
-```
-
-## 🚀 Usage
-
-Run with your PDF directory:
-
-```bash
-python main.py /path/to/pdf/directory
+curl -L https://gist.githubusercontent.com/tsilva/8588cb367242e3db8f1b33c42e4e5e06/raw/venv-run.sh -o run.sh && chmod +x run.sh && ./run.sh
 ```
 
 ### How it works:

@@ -1,8 +1,0 @@
-name: pdf-merger
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - python>=3.8
-  - pikepdf
-  - tqdm
