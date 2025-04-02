@@ -1,54 +1,47 @@
-# 📄 PDF Merger
+# 📄 pdf-merger
 
 <p align="center">
-  <img src="logo.jpg" alt="PDF Merger Logo" width="400"/>
+  <img src="logo.jpg" alt="Logo" width="400"/>
 </p>
 
-> 🔍 Simple tool to find and merge related PDF files in a directory
+🔍 A simple CLI tool that intelligently finds and merges related PDF files in a directory
 
-## ✨ Features
+## 📖 Overview
 
-- 📁 Finds PDF files with similar names
-- 💬 Asks before merging files
-- 📊 Shows merge progress
-- 📝 Keeps you informed with logs
-- 🛡️ Checks for existing files
+PDF Merger is a command-line utility that identifies PDF files with similar names in a directory and offers to merge them into a single document. It uses pattern matching to group related files (like "document-1.pdf", "document-2.pdf"), asks for confirmation before merging, and creates a new combined PDF while preserving the originals.
 
-## 🛠️ Installation
+## 🚀 Installation
 
 ```bash
-git clone https://github.com/tsilva/pdf-merger.git
-cd pdf-merger
-curl -L https://gist.githubusercontent.com/tsilva/258374c1ba2296d8ba22fffbf640f183/raw/venv-install.sh -o install.sh && chmod +x install.sh && ./install.sh
+pipx install . --force
 ```
+
+## 🛠️ Usage
+
+Run the tool by pointing it to a directory containing PDF files:
 
 ```bash
-curl -L https://gist.githubusercontent.com/tsilva/8588cb367242e3db8f1b33c42e4e5e06/raw/venv-run.sh -o run.sh && chmod +x run.sh && ./run.sh
+pdf-merger /path/to/your/pdfs
 ```
 
-### How it works:
-1. 🔍 Looks for PDF files in your directory
-2. 📋 Groups files with similar names
-3. ❓ Checks with you before merging
-4. 📄 Creates the merged PDF
+The tool will:
+1. Scan the directory for PDF files with similar names
+2. Group them together (e.g., "report-1.pdf", "report-2.pdf")
+3. Ask for confirmation before merging each group
+4. Create a new file named "[base-name].merged.pdf" for each group
 
-## 📚 Example
-
-Your files:
+Example output:
 ```
-📄 document-1.pdf
-📄 document-2.pdf
-📄 document-3.pdf
-📄 other.pdf
+Found potentially related PDFs for 'document':
+  1. document-1.pdf
+  2. document-2.pdf
+  3. document-3.pdf
+
+Would you like to merge these files? [Y/n]:
 ```
 
-What happens:
-1. 🔍 Spots the related "document" files
-2. 💬 Asks if you want them merged
-3. 📄 Creates "document.merged.pdf"
-4. ➡️ Leaves other files alone
+If you confirm, it will create "document.merged.pdf" containing all pages from the source files.
 
-## 📝 License
+## 📄 License
 
-This project is available under the [MIT License](LICENSE) 📜
-
+This project is available under the [MIT License](LICENSE)

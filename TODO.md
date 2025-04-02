@@ -1,0 +1,1 @@
+- Convert to command-line tool installable as package with pipx
