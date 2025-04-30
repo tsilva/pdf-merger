@@ -12,11 +12,19 @@ PDF Merger is a command-line utility that identifies PDF files with similar name
 
 ## 🚀 Installation
 
-```bash
+Install using [pipx](https://pypa.github.io/pipx/):
+
+```sh
 pipx install . --force
 ```
 
 ## 🛠️ Usage
+
+After installation, use the `pdf-merger` command:
+
+```sh
+pdf-merger /path/to/pdf-directory
+```
 
 Run the tool by pointing it to a directory containing PDF files:
 

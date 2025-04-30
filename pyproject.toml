@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-merger"
+version = "0.1.0"
+description = "Batch merge related PDF files in a directory"
+authors = [
+    { name = "Tiago Silva", email = "eng.tiago.silva@gmail.com" }
+]
+dependencies = [
+    "tqdm",
+    "pikepdf"
+]
+requires-python = ">=3.7"
+
+[project.scripts]
+pdf-merger = "main:main"
+
+[tool.hatch.build.targets.wheel]
+include = ["main.py"]
