@@ -26,10 +26,30 @@ After installation, use the `pdf-merger` command:
 pdf-merger /path/to/pdf-directory
 ```
 
-Run the tool by pointing it to a directory containing PDF files:
+### Operational Modes
 
-```bash
-pdf-merger /path/to/your/pdfs
+- **Default mode**:  
+  Merges all PDF files in the directory (sorted alphabetically) into a single file named `merged_all.pdf`.
+
+- **Grouped mode**:  
+  Use the `--grouped` flag to merge only files that can be grouped together (e.g., files with similar names). Each group is merged into its own file.
+
+### Optional Prompt
+
+Add the `--ask` flag to prompt before performing each merge operation.
+
+#### Examples
+
+Merge all PDFs into one file (no prompt):
+
+```sh
+pdf-merger /path/to/pdf-directory
+```
+
+Merge only grouped PDFs, prompting before each merge:
+
+```sh
+pdf-merger /path/to/pdf-directory --grouped --ask
 ```
 
 The tool will:
