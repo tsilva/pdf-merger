@@ -74,15 +74,18 @@ def batch_merge_pdfs_grouped(input_dir, ask=False):
             process_pdf_group(input_dir, base_name, files, ask=ask)
 
 def merge_all_pdfs(input_dir, ask=False):
-    pdf_files = sorted([f for f in os.listdir(input_dir) if f.lower().endswith('.pdf')])
+    pdf_files = sorted([
+        f for f in os.listdir(input_dir)
+        if f.lower().endswith('.pdf') and f != "merged_all.pdf"
+    ])
     if not pdf_files:
         logger.info("No PDF files found to merge")
         return
 
     output_path = os.path.join(input_dir, "merged_all.pdf")
-    if os.path.exists(output_path):
-        logger.info("Skipping: merged_all.pdf already exists")
-        return
+    #if os.path.exists(output_path):
+    #    logger.info("Skipping: merged_all.pdf already exists")
+    #    return
 
     logger.info("Found the following PDF files to merge:")
     for idx, file in enumerate(pdf_files, 1):
