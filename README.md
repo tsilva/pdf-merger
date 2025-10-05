@@ -12,10 +12,10 @@ PDF Merger is a command-line utility that identifies PDF files with similar name
 
 ## 🚀 Installation
 
-Install using [pipx](https://pypa.github.io/pipx/):
+Install using [uv](https://docs.astral.sh/uv/):
 
 ```sh
-pipx install . --force
+uv tool install .
 ```
 
 ## 🛠️ Usage
