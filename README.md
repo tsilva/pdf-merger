@@ -1,64 +1,77 @@
-# 📄 pdf-merger
+<div align="center">
+  <img src="logo.png" alt="pdf-merger" width="512"/>
 
-<p align="center">
-  <img src="logo.jpg" alt="Logo" width="400"/>
-</p>
+  [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
+  [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-🔍 A simple CLI tool that intelligently finds and merges related PDF files in a directory
+  **📄 Intelligently find and merge related PDF files with a single command 🔗**
 
-## 📖 Overview
+</div>
 
-PDF Merger is a command-line utility that identifies PDF files with similar names in a directory and offers to merge them into a single document. It uses pattern matching to group related files (like "document-1.pdf", "document-2.pdf"), asks for confirmation before merging, and creates a new combined PDF while preserving the originals.
+## Overview
 
-## 🚀 Installation
+pdf-merger is a CLI tool that scans directories for PDF files and merges them together. It can combine all PDFs into one file or intelligently group related files by name pattern (e.g., "report-1.pdf", "report-2.pdf") and merge each group separately.
 
-Install using [uv](https://docs.astral.sh/uv/):
+## Features
 
-```sh
+- **Smart grouping** - Automatically detects related PDFs by filename patterns (`doc-1.pdf`, `doc-2.pdf` → merged)
+- **Two merge modes** - Merge all PDFs or only related file groups
+- **Interactive prompts** - Optional confirmation before each merge operation
+- **Preserves originals** - Source files are never modified or deleted
+- **Progress tracking** - Visual progress bars for batch operations
+
+## Quick Start
+
+```bash
+# Install with uv
+uv tool install .
+
+# Merge all PDFs in a directory
+pdf-merger /path/to/pdfs
+
+# Merge only related file groups
+pdf-merger /path/to/pdfs --grouped
+```
+
+## Installation
+
+Requires Python 3.7+ and [uv](https://docs.astral.sh/uv/).
+
+```bash
+git clone https://github.com/tsilva/pdf-merger.git
+cd pdf-merger
 uv tool install .
 ```
 
-## 🛠️ Usage
+## Usage
 
-After installation, use the `pdf-merger` command:
+### Default Mode
 
-```sh
-pdf-merger /path/to/pdf-directory
+Merges all PDF files alphabetically into a single `merged_all.pdf`:
+
+```bash
+pdf-merger /path/to/directory
 ```
 
-### Operational Modes
+### Grouped Mode
 
-- **Default mode**:  
-  Merges all PDF files in the directory (sorted alphabetically) into a single file named `merged_all.pdf`.
+Merges only files with similar names. Files like `invoice-1.pdf`, `invoice-2.pdf`, `invoice-3.pdf` become `invoice.merged.pdf`:
 
-- **Grouped mode**:  
-  Use the `--grouped` flag to merge only files that can be grouped together (e.g., files with similar names). Each group is merged into its own file.
-
-### Optional Prompt
-
-Add the `--ask` flag to prompt before performing each merge operation.
-
-#### Examples
-
-Merge all PDFs into one file (no prompt):
-
-```sh
-pdf-merger /path/to/pdf-directory
+```bash
+pdf-merger /path/to/directory --grouped
 ```
 
-Merge only grouped PDFs, prompting before each merge:
+### Interactive Mode
 
-```sh
-pdf-merger /path/to/pdf-directory --grouped --ask
+Add `--ask` to confirm before each merge:
+
+```bash
+pdf-merger /path/to/directory --ask
+pdf-merger /path/to/directory --grouped --ask
 ```
 
-The tool will:
-1. Scan the directory for PDF files with similar names
-2. Group them together (e.g., "report-1.pdf", "report-2.pdf")
-3. Ask for confirmation before merging each group
-4. Create a new file named "[base-name].merged.pdf" for each group
+### Example Output
 
-Example output:
 ```
 Found potentially related PDFs for 'document':
   1. document-1.pdf
@@ -68,8 +81,18 @@ Found potentially related PDFs for 'document':
 Would you like to merge these files? [Y/n]:
 ```
 
-If you confirm, it will create "document.merged.pdf" containing all pages from the source files.
+## Pattern Matching
 
-## 📄 License
+The grouping algorithm matches files with trailing numeric suffixes:
 
-This project is available under the [MIT License](LICENSE)
+| Files | Base Name | Output |
+|-------|-----------|--------|
+| `report-1.pdf`, `report-2.pdf` | report | `report.merged.pdf` |
+| `doc_3.pdf`, `doc_4.pdf` | doc | `doc.merged.pdf` |
+| `scan 1.pdf`, `scan 2.pdf` | scan | `scan.merged.pdf` |
+
+Supported separators: `-`, `_`, and spaces.
+
+## License
+
+[MIT](LICENSE)
