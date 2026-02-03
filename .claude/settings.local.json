@@ -4,7 +4,8 @@
       "Bash(uv build:*)",
       "Bash(uv tool install:*)",
       "Bash(curl:*)",
-      "Bash(pdf-gluer:*)"
+      "Bash(pdf-gluer:*)",
+      "mcp__openrouter__generate_image"
     ],
     "deny": []
   },

@@ -216,4 +216,4 @@ Thumbs.db
 .claude-sandbox.json
 *.code-workspace
 
-.claude/settings.local.json
+.claude/*
