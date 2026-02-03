@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pdf-gluer"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Batch merge related PDF files in a directory"
 readme = "README.md"
 license = { text = "MIT" }
@@ -20,8 +20,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/tsilva/pdf-merger"
-Repository = "https://github.com/tsilva/pdf-merger"
+Homepage = "https://github.com/tsilva/pdf-gluer"
+Repository = "https://github.com/tsilva/pdf-gluer"
 
 [project.scripts]
 pdf-gluer = "pdf_gluer:main"
+
+[tool.hatch.version]
+path = "pdf_gluer/__init__.py"

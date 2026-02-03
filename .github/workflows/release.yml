@@ -3,7 +3,9 @@ name: Release
 on:
   push:
     branches: [main]
-    paths: [pyproject.toml]
+    paths:
+      - pyproject.toml
+      - pdf_gluer/__init__.py
 
 permissions:
   contents: write
@@ -15,10 +17,6 @@ jobs:
 
   pii-scan:
     uses: tsilva/.github/.github/workflows/pii-scan.yml@main
-
-  sync-description:
-    needs: [test, pii-scan]
-    uses: tsilva/.github/.github/workflows/sync-repo-description.yml@main
 
   publish-pypi:
     needs: [test, pii-scan]
