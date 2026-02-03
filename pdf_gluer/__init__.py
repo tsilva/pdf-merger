@@ -1,6 +1,6 @@
-"""PDF Merger - Batch merge related PDF files in a directory."""
+"""PDF Gluer - Batch merge related PDF files in a directory."""
 
-from pdf_merger.core import (
+from pdf_gluer.core import (
     merge_pdfs,
     merge_all_pdfs,
     batch_merge_pdfs_grouped,

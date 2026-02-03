@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PDF Merger is a CLI tool and Python library that intelligently finds and merges related PDF files in a directory. It uses `pikepdf` for PDF manipulation and `tqdm` for progress bars.
+PDF Gluer is a CLI tool and Python library that intelligently finds and merges related PDF files in a directory. It uses `pikepdf` for PDF manipulation and `tqdm` for progress bars.
 
 ## Installation & Development
 
@@ -20,18 +20,18 @@ The project uses:
 
 ## Running the Tool
 
-After installation, the `pdf-merger` command is available:
+After installation, the `pdf-gluer` command is available:
 
 ```bash
 # Default mode: merge all PDFs into merged_all.pdf
-pdf-merger /path/to/directory
+pdf-gluer /path/to/directory
 
 # Grouped mode: merge only files with similar names
-pdf-merger /path/to/directory --grouped
+pdf-gluer /path/to/directory --grouped
 
 # Ask before each merge operation
-pdf-merger /path/to/directory --ask
-pdf-merger /path/to/directory --grouped --ask
+pdf-gluer /path/to/directory --ask
+pdf-gluer /path/to/directory --grouped --ask
 ```
 
 ## Architecture
@@ -39,15 +39,15 @@ pdf-merger /path/to/directory --grouped --ask
 The project follows a standard Python package structure:
 
 ```
-pdf_merger/
+pdf_gluer/
 ├── __init__.py    # Public API exports
 └── core.py        # Core implementation
 ```
 
 ### Package Structure
 
-- **`pdf_merger/__init__.py`**: Exports public API (`merge_pdfs`, `merge_all_pdfs`, `batch_merge_pdfs_grouped`, `main`)
-- **`pdf_merger/core.py`**: Contains all implementation logic
+- **`pdf_gluer/__init__.py`**: Exports public API (`merge_pdfs`, `merge_all_pdfs`, `batch_merge_pdfs_grouped`, `main`)
+- **`pdf_gluer/core.py`**: Contains all implementation logic
 
 ### Core Functions (in `core.py`)
 

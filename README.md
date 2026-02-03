@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="logo.png" alt="pdf-merger" width="512"/>
+  <img src="logo.png" alt="pdf-gluer" width="512"/>
 
-  [![PyPI](https://img.shields.io/pypi/v/pdf-merger.svg)](https://pypi.org/project/pdf-merger/)
+  [![PyPI](https://img.shields.io/pypi/v/pdf-gluer.svg)](https://pypi.org/project/pdf-gluer/)
   [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-pdf-merger is a CLI tool that scans directories for PDF files and merges them together. It can combine all PDFs into one file or intelligently group related files by name pattern (e.g., "report-1.pdf", "report-2.pdf") and merge each group separately.
+pdf-gluer is a CLI tool that scans directories for PDF files and merges them together. It can combine all PDFs into one file or intelligently group related files by name pattern (e.g., "report-1.pdf", "report-2.pdf") and merge each group separately.
 
 ## Features
 
@@ -25,13 +25,13 @@ pdf-merger is a CLI tool that scans directories for PDF files and merges them to
 
 ```bash
 # Install from PyPI
-pip install pdf-merger
+pip install pdf-gluer
 
 # Merge all PDFs in a directory
-pdf-merger /path/to/pdfs
+pdf-gluer /path/to/pdfs
 
 # Merge only related file groups
-pdf-merger /path/to/pdfs --grouped
+pdf-gluer /path/to/pdfs --grouped
 ```
 
 ## Installation
@@ -40,14 +40,14 @@ Requires Python 3.12+.
 
 ```bash
 # From PyPI (recommended)
-pip install pdf-merger
+pip install pdf-gluer
 
 # Or with pipx for isolated install
-pipx install pdf-merger
+pipx install pdf-gluer
 
 # Or from source with uv
-git clone https://github.com/tsilva/pdf-merger.git
-cd pdf-merger
+git clone https://github.com/tsilva/pdf-gluer.git
+cd pdf-gluer
 uv tool install .
 ```
 
@@ -58,7 +58,7 @@ uv tool install .
 Merges all PDF files alphabetically into a single `merged_all.pdf`:
 
 ```bash
-pdf-merger /path/to/directory
+pdf-gluer /path/to/directory
 ```
 
 ### Grouped Mode
@@ -66,7 +66,7 @@ pdf-merger /path/to/directory
 Merges only files with similar names. Files like `invoice-1.pdf`, `invoice-2.pdf`, `invoice-3.pdf` become `invoice.merged.pdf`:
 
 ```bash
-pdf-merger /path/to/directory --grouped
+pdf-gluer /path/to/directory --grouped
 ```
 
 ### Interactive Mode
@@ -74,8 +74,8 @@ pdf-merger /path/to/directory --grouped
 Add `--ask` to confirm before each merge:
 
 ```bash
-pdf-merger /path/to/directory --ask
-pdf-merger /path/to/directory --grouped --ask
+pdf-gluer /path/to/directory --ask
+pdf-gluer /path/to/directory --grouped --ask
 ```
 
 ### Example Output
@@ -103,10 +103,10 @@ Supported separators: `-`, `_`, and spaces.
 
 ## Programmatic API
 
-You can also use pdf-merger as a library:
+You can also use pdf-gluer as a library:
 
 ```python
-from pdf_merger import merge_pdfs, merge_all_pdfs, batch_merge_pdfs_grouped
+from pdf_gluer import merge_pdfs, merge_all_pdfs, batch_merge_pdfs_grouped
 
 # Merge specific files
 merge_pdfs(["/path/to/file1.pdf", "/path/to/file2.pdf"], "/path/to/output.pdf")

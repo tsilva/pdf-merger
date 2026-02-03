@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pdf-merger"
+name = "pdf-gluer"
 version = "0.1.0"
 description = "Batch merge related PDF files in a directory"
 readme = "README.md"
@@ -24,4 +24,4 @@ Homepage = "https://github.com/tsilva/pdf-merger"
 Repository = "https://github.com/tsilva/pdf-merger"
 
 [project.scripts]
-pdf-merger = "pdf_merger:main"
+pdf-gluer = "pdf_gluer:main"

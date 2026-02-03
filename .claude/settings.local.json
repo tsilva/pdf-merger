@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv build:*)",
+      "Bash(uv tool install:*)",
+      "Bash(pdf-merger:*)",
+      "Bash(curl:*)",
+      "Bash(pdf-gluer:*)"
+    ],
+    "deny": []
+  },
+  "sandbox": {
+    "enabled": true
+  }
+}
