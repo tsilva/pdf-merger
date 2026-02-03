@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PDF Merger is a simple CLI tool that intelligently finds and merges related PDF files in a directory. It's a single-file Python application (`main.py`) that uses `pikepdf` for PDF manipulation and `tqdm` for progress bars.
+PDF Merger is a CLI tool and Python library that intelligently finds and merges related PDF files in a directory. It uses `pikepdf` for PDF manipulation and `tqdm` for progress bars.
 
 ## Installation & Development
 
@@ -15,7 +15,7 @@ uv tool install .
 
 The project uses:
 - **Build system**: Hatchling
-- **Python version**: >=3.7
+- **Python version**: >=3.12
 - **Dependencies**: `tqdm`, `pikepdf`
 
 ## Running the Tool
@@ -36,9 +36,20 @@ pdf-merger /path/to/directory --grouped --ask
 
 ## Architecture
 
-This is a single-file CLI application with a straightforward architecture:
+The project follows a standard Python package structure:
 
-### Core Functions
+```
+pdf_merger/
+├── __init__.py    # Public API exports
+└── core.py        # Core implementation
+```
+
+### Package Structure
+
+- **`pdf_merger/__init__.py`**: Exports public API (`merge_pdfs`, `merge_all_pdfs`, `batch_merge_pdfs_grouped`, `main`)
+- **`pdf_merger/core.py`**: Contains all implementation logic
+
+### Core Functions (in `core.py`)
 
 - **`get_base_name(filename)`**: Strips numeric suffixes from filenames to identify related PDFs (e.g., "doc-1.pdf" and "doc-2.pdf" both become "doc")
 - **`group_similar_pdfs(directory)`**: Groups PDF files by their base names, returning only groups with multiple files
@@ -67,3 +78,12 @@ The grouping algorithm uses regex `r'[-_ ]+\d+$'` to match files with trailing n
 - Output file is `merged_all.pdf` in default mode
 - Original files are preserved (never deleted)
 - The tool skips groups that already have a merged output file (in grouped mode)
+
+## CI/CD
+
+The project uses GitHub Actions for automated releases:
+
+- **`.github/workflows/release.yml`**: Triggers on `pyproject.toml` changes to main branch
+  - Runs tests and PII scan
+  - Creates GitHub release with auto-generated notes
+  - Publishes to PyPI using trusted publishing

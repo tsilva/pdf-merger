@@ -1,7 +1,8 @@
 <div align="center">
   <img src="logo.png" alt="pdf-merger" width="512"/>
 
-  [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
+  [![PyPI](https://img.shields.io/pypi/v/pdf-merger.svg)](https://pypi.org/project/pdf-merger/)
+  [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
   **📄 Intelligently find and merge related PDF files with a single command 🔗**
@@ -23,8 +24,8 @@ pdf-merger is a CLI tool that scans directories for PDF files and merges them to
 ## Quick Start
 
 ```bash
-# Install with uv
-uv tool install .
+# Install from PyPI
+pip install pdf-merger
 
 # Merge all PDFs in a directory
 pdf-merger /path/to/pdfs
@@ -35,9 +36,16 @@ pdf-merger /path/to/pdfs --grouped
 
 ## Installation
 
-Requires Python 3.7+ and [uv](https://docs.astral.sh/uv/).
+Requires Python 3.12+.
 
 ```bash
+# From PyPI (recommended)
+pip install pdf-merger
+
+# Or with pipx for isolated install
+pipx install pdf-merger
+
+# Or from source with uv
 git clone https://github.com/tsilva/pdf-merger.git
 cd pdf-merger
 uv tool install .
@@ -92,6 +100,23 @@ The grouping algorithm matches files with trailing numeric suffixes:
 | `scan 1.pdf`, `scan 2.pdf` | scan | `scan.merged.pdf` |
 
 Supported separators: `-`, `_`, and spaces.
+
+## Programmatic API
+
+You can also use pdf-merger as a library:
+
+```python
+from pdf_merger import merge_pdfs, merge_all_pdfs, batch_merge_pdfs_grouped
+
+# Merge specific files
+merge_pdfs(["/path/to/file1.pdf", "/path/to/file2.pdf"], "/path/to/output.pdf")
+
+# Merge all PDFs in a directory
+merge_all_pdfs("/path/to/directory")
+
+# Merge grouped PDFs by name pattern
+batch_merge_pdfs_grouped("/path/to/directory")
+```
 
 ## License
 

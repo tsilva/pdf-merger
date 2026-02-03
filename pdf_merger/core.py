@@ -1,8 +1,11 @@
+"""Core PDF merging functionality."""
+
 import os
 import argparse
 import logging
 import re
 from collections import defaultdict
+
 import pikepdf
 from tqdm import tqdm
 
@@ -13,34 +16,56 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 def get_base_name(filename):
-    # Remove common suffix patterns like "- 1", "- 2", " (1)", etc.
+    """Extract base name from filename by removing numeric suffixes.
+
+    Examples:
+        "report-1.pdf" -> "report"
+        "doc_3.pdf" -> "doc"
+    """
     return re.sub(r'[-_ ]+\d+$', '', os.path.splitext(filename)[0])
 
+
 def group_similar_pdfs(directory):
+    """Group PDF files by their base names.
+
+    Returns only groups with multiple files.
+    """
     groups = defaultdict(list)
     for file in os.listdir(directory):
         if file.lower().endswith('.pdf'):
             base_name = get_base_name(file)
             groups[base_name].append(file)
-    
-    # Only return groups with multiple files
+
     return {k: sorted(v) for k, v in groups.items() if len(v) > 1}
 
+
 def merge_pdfs(input_files, output_path):
+    """Merge multiple PDF files into a single output file.
+
+    Args:
+        input_files: List of paths to PDF files to merge
+        output_path: Path for the merged output file
+
+    Returns:
+        True if successful, False otherwise
+    """
     try:
         pdf = pikepdf.new()
         for input_file in input_files:
             src = pikepdf.open(input_file)
             pdf.pages.extend(src.pages)
-        
+
         pdf.save(output_path)
         return True
     except Exception as e:
         logger.error(f"Failed to merge PDFs: {e}")
         return False
 
+
 def process_pdf_group(directory, base_name, files, ask=False):
+    """Process and merge a single group of related PDFs."""
     output_path = os.path.join(directory, f"{base_name}.merged.pdf")
     if os.path.exists(output_path):
         logger.info(f"Skipping '{base_name}': merged version already exists")
@@ -62,7 +87,13 @@ def process_pdf_group(directory, base_name, files, ask=False):
         return True
     return False
 
+
 def batch_merge_pdfs_grouped(input_dir, ask=False):
+    """Merge PDF files grouped by similar names.
+
+    Only merges files that share a base name, creating separate
+    merged files for each group.
+    """
     pdf_groups = group_similar_pdfs(input_dir)
     if not pdf_groups:
         logger.info("No PDF files found that need merging")
@@ -73,7 +104,12 @@ def batch_merge_pdfs_grouped(input_dir, ask=False):
             pbar.set_postfix_str(base_name)
             process_pdf_group(input_dir, base_name, files, ask=ask)
 
+
 def merge_all_pdfs(input_dir, ask=False):
+    """Merge all PDF files in a directory into a single file.
+
+    Creates merged_all.pdf containing all PDFs sorted alphabetically.
+    """
     pdf_files = sorted([
         f for f in os.listdir(input_dir)
         if f.lower().endswith('.pdf') and f != "merged_all.pdf"
@@ -83,9 +119,6 @@ def merge_all_pdfs(input_dir, ask=False):
         return
 
     output_path = os.path.join(input_dir, "merged_all.pdf")
-    #if os.path.exists(output_path):
-    #    logger.info("Skipping: merged_all.pdf already exists")
-    #    return
 
     logger.info("Found the following PDF files to merge:")
     for idx, file in enumerate(pdf_files, 1):
@@ -101,7 +134,9 @@ def merge_all_pdfs(input_dir, ask=False):
     if merge_pdfs(input_files, output_path):
         logger.info("Merge completed successfully")
 
+
 def main():
+    """CLI entry point."""
     parser = argparse.ArgumentParser(description='Batch merge PDF files')
     parser.add_argument('input_dir', help='Directory containing PDF files to merge')
     parser.add_argument('--grouped', action='store_true', help='Merge only files that can be grouped together')
@@ -112,6 +147,7 @@ def main():
         batch_merge_pdfs_grouped(args.input_dir, ask=args.ask)
     else:
         merge_all_pdfs(args.input_dir, ask=args.ask)
+
 
 if __name__ == "__main__":
     main()
